@@ -17,3 +17,9 @@ Membership.create([
   { user_id: 1, organization: organizations[0] },
   { user_id: 1, organization: organizations[1] }
 ])
+
+Link.destroy_all
+Link.create([
+  { url: 'https://jesse.sh/', title: "Jesse Shawl makes websites." },
+  { url: 'http://guides.rubyonrails.org/association_basics.html', title: "Active Record Association Basics" }
+])

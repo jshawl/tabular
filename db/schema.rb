@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009232045) do
+ActiveRecord::Schema.define(version: 20141010001921) do
+
+  create_table "links", force: true do |t|
+    t.string   "url"
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "memberships", force: true do |t|
     t.integer "organization_id"
@@ -27,6 +34,16 @@ ActiveRecord::Schema.define(version: 20141009232045) do
   end
 
   add_index "organizations", ["user_id"], name: "index_organizations_on_user_id"
+
+  create_table "ownerships", force: true do |t|
+    t.integer "link_id"
+    t.integer "user_id"
+    t.integer "organization_id"
+  end
+
+  add_index "ownerships", ["link_id"], name: "index_ownerships_on_link_id"
+  add_index "ownerships", ["organization_id"], name: "index_ownerships_on_organization_id"
+  add_index "ownerships", ["user_id"], name: "index_ownerships_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

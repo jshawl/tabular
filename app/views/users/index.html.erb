@@ -1,3 +1,5 @@
+<%= link_to 'create new organization', new_organization_path %>
+
 <ul>
   <li><%= link_to 'me', user_path( current_user ) %></li>
   <% @organizations.each do |org| %>
