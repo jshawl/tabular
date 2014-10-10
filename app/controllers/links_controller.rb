@@ -1,19 +1,22 @@
 class LinksController < ApplicationController
   before_action :set_link, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index]
 
   # GET /links
   # GET /links.json
   def index
     if params[:user_id]
       @links = User.find( params[:user_id] ).links
-    else
+      @is_admin = User.find( params[:user_id] ) == current_user
+      @name = User.find( params[:user_id] ).email
+    elsif params[:organization_id]
+      @org = Organization.find( params[:organization_id] )
+      @name = Organization.find( params[:organization_id] ).name
+      @links = @org.links
       @links = Link.all
+      mem = Membership.find_by( organization: @org, user: current_user )
+      @is_admin = mem && mem.is_admin
     end
-  end
-
-  # GET /links/1
-  # GET /links/1.json
-  def show
   end
 
   # GET /links/new

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'users#index'
-  resources :organizations
-  resources :users do
+  resources :users, :organizations do
     resources :links
   end
 end

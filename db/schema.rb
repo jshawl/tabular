@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141010001921) do
+ActiveRecord::Schema.define(version: 20141010012454) do
 
   create_table "links", force: true do |t|
     t.string   "url"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20141010001921) do
   create_table "memberships", force: true do |t|
     t.integer "organization_id"
     t.integer "user_id"
+    t.boolean "is_admin"
   end
 
   add_index "memberships", ["organization_id"], name: "index_memberships_on_organization_id"
